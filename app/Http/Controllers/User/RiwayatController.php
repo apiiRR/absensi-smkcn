@@ -27,12 +27,15 @@ class RiwayatController extends Controller
         $sakit = Data::where('user_id', Auth::user()->id)->where('attedance', 'sakit')->get()->count();
         $izin = Data::where('user_id', Auth::user()->id)->where('attedance', 'izin')->get()->count();
         $jurusans = Jurus::get();
+        $user_jurus = Data::select('jurusan_id')->where('user_id', Auth::user()->id)->distinct()->first();
+        // dd($user_jurus);
         return view('user.riwayat', [
             'datas' => $datas,
             'sakit' => $sakit,
             'hadir' => $hadir,
             'izin' => $izin,
             'jurusans' => $jurusans,
+            'user_jurus' => $user_jurus,
         ]);
     }
 

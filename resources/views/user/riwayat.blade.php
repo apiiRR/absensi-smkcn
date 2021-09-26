@@ -10,7 +10,7 @@
                         <div class="form-group basic">
                             <div class="input-wrapper">
                                 <div class="input-group">
-                                    <input type="date" class="form-control datepicker start_date" name="start_date"
+                                    <input type="date" id="from" class="form-control datepicker start_date"
                                         placeholder="Tanggal Awal" required>
                                 </div>
                             </div>
@@ -21,18 +21,22 @@
                         <div class="form-group basic">
                             <div class="input-wrapper">
                                 <div class="input-group">
-                                    <input type="date" name="end_date" class="form-control datepicker end_date"
-                                        value="21-09-2021">
+                                    <input type="date" id="to" name="end_date"
+                                        class="form-control datepicker end_date">
                                 </div>
 
                             </div>
                         </div>
                     </div>
+                    <input type="text" value="{{ $user_jurus->jurusan_id }}" id="project" hidden>
                     <div class="col-sm-4 col-md-4">
-                        <button type="button" class="col-md-12 btn btn-warning mt-1" data-toggle="modal"
-                            data-target="#modal-print">
+                        <a class="col-md-12 btn btn-warning mt-1" onclick="this.href='/pdf/'+ document.getElementById('from').value + '/' + document.getElementById('to').value + '/' + document.getElementById('project').value"
+                            target="_blank">
                             <ion-icon name="print-outline"></ion-icon> Cetak
-                        </button>
+                        </a>
+                        {{-- <a class="btn btn-success text-center mt-2"
+                            onclick="this.href='/cpdf/'+ document.getElementById('from').value + '/' + document.getElementById('to').value + '/' + document.getElementById('project').value"
+                            target="_blank"><i class="fas fa-print text-white"></i> Cetak</a> --}}
                     </div>
 
                 </div>
@@ -75,8 +79,9 @@
                                         onclick="event.preventDefault(); document.getElementById('hapus_{{ $value->id }}').submit();"><i
                                             class="fas fa-trash"></i></button>
                                 </td>
-                                <form id="hapus_{{ $value->id }}" action="{{ route('riwayat.destroy', ['riwayat' => $value->id]) }}"
-                                    method="POST" class="d-none">
+                                <form id="hapus_{{ $value->id }}"
+                                    action="{{ route('riwayat.destroy', ['riwayat' => $value->id]) }}" method="POST"
+                                    class="d-none">
                                     @csrf
                                     @method('DELETE')
                                 </form>

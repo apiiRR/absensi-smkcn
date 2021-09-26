@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::get('/wali', function () {
-//     return view('layouts.wali');
-// });
+Route::get('/print', function () {
+    return view('print');
+});
 
 Route::get('/', 'HomeController@index');
 
@@ -36,6 +36,8 @@ Route::resource('profile', 'Admin\ProfileController');
 Route::resource('data', 'Admin\DataController');
 
 Route::resource('/wali-siswa', 'OrtuController');
+
+Route::get('/pdf/{from}/{to}/{project}', 'PDFController@cetak');
 
 Route::get('file-import-export', [UserController::class, 'fileImportExport']);
 Route::post('file-import', [App\Http\Controllers\UserController::class, 'fileImport'])->name('file-import');

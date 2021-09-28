@@ -130,6 +130,7 @@
 
     <!-- Page Specific JS File -->
     {{-- <script src="{{ asset('admin/assets/js/page/index.js') }}"></script> --}}
+    @include('sweetalert::alert')
 </body>
 
 </html>

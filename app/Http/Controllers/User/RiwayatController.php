@@ -104,6 +104,7 @@ class RiwayatController extends Controller
     {
         Data::destroy($id);
 
+        toast('Data Berhasil Dihapus','success');
         return back();
     }
 }

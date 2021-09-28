@@ -58,7 +58,7 @@
     <div class="section-title">Absen Terbaru</div>
     <div class="card">
         <div class="table-responsive">
-            <table class="table table-dark table-striped table-hover rounded bg-primary text-center">
+            <table class="table table-dark table-striped table-hover rounded bg-secondary text-center">
                 <thead>
                     <tr>
                         <th scope="col">Tanggal</th>
@@ -73,7 +73,18 @@
                         <td>{{ $data->date }}</td>
                         <td>{{ $data->time_in }}</td>
                         <td>{{ $data->activity }}</td>
-                        <td>{{ $data->attedance }}</td>
+                        <td>
+                            @switch($data->attedance)
+                            @case('hadir')
+                            <span class="badge bg-primary">{{ $data->attedance }}</span>
+                            @break
+                            @case('izin')
+                            <span class="badge bg-success">{{ $data->attedance }}</span>
+                            @break
+                            @default
+                            <span class="badge bg-warning">{{ $data->attedance }}</span>
+                            @endswitch
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -7,6 +7,7 @@ use App\Models\Jurus;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -68,6 +69,8 @@ class HomeController extends Controller
             // $datas = $user->datas;
             // dd($datas);
             return view('user.home', compact('datas'));
+
+            
         }
     }
 }

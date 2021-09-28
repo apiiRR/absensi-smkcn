@@ -99,6 +99,7 @@ class ProfileController extends Controller
         ]);
         }
 
+        toast('Data Berhasil Diupdate','success');
         return back();
     }
 

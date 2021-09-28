@@ -97,7 +97,8 @@ class ProfilController extends Controller
                     'email' => $request['email'],
                     'photo' => $fileName,
                 ]);
-
+                
+                toast('Data Berhasil Diupdate','success');
                 return back();
                 break;
             default:
@@ -105,6 +106,7 @@ class ProfilController extends Controller
                     'password' => Hash::make($request['name']),
                 ]);
 
+                toast('Data Berhasil Diupdate','success');
                 return back();
                 break;
         }

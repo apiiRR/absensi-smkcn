@@ -21,8 +21,7 @@
                         <div class="form-group basic">
                             <div class="input-wrapper">
                                 <div class="input-group">
-                                    <input type="date" id="to" name="end_date"
-                                        class="form-control datepicker end_date">
+                                    <input type="date" id="to" name="end_date" class="form-control datepicker end_date">
                                 </div>
 
                             </div>
@@ -30,7 +29,8 @@
                     </div>
                     <input type="text" value="{{ $user_jurus->jurusan_id }}" id="project" hidden>
                     <div class="col-sm-4 col-md-4">
-                        <a class="col-md-12 btn btn-warning mt-1" onclick="this.href='/pdf/'+ document.getElementById('from').value + '/' + document.getElementById('to').value + '/' + document.getElementById('project').value"
+                        <a class="col-md-12 btn btn-warning mt-1"
+                            onclick="this.href='/pdf/'+ document.getElementById('from').value + '/' + document.getElementById('to').value + '/' + document.getElementById('project').value"
                             target="_blank">
                             <ion-icon name="print-outline"></ion-icon> Cetak
                         </a>
@@ -69,7 +69,17 @@
                                 <td class="text-center">{{ $value->day }}</td>
                                 <td class="text-center">{{ $value->time_in }}</td>
                                 <td class="text-center">{{ $value->activity }}</td>
-                                <td class="text-center"><span class="badge badge-success">{{ $value->attedance }}</span>
+                                <td class="text-center">
+                                    @switch($value->attedance)
+                                    @case('hadir')
+                                    <span class="badge bg-primary">{{ $value->attedance }}</span>
+                                    @break
+                                    @case('izin')
+                                    <span class="badge bg-success">{{ $value->attedance }}</span>
+                                    @break
+                                    @default
+                                    <span class="badge bg-warning">{{ $value->attedance }}</span>
+                                    @endswitch
                                 </td>
                                 <td class="text-center">
                                     {{-- <button type="button" class="btn btn-success btn-sm modal-update"

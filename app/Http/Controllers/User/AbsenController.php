@@ -64,7 +64,8 @@ class AbsenController extends Controller
                     'jurusan_id' => $request['jurusan'],
                     'attedance' => 'hadir',
                 ]);
-
+                
+                toast('Data Berhasil Disimpan','success');
                 return back();
 
                 break;
@@ -78,6 +79,7 @@ class AbsenController extends Controller
                     'attedance' => 'izin',
                 ]);
 
+                toast('Data Berhasil Disimpan','success');
                 return back();
 
                 break;
@@ -91,6 +93,7 @@ class AbsenController extends Controller
                     'attedance' => 'sakit',
                 ]);
 
+                toast('Data Berhasil Disimpan','success');
                 return back();
 
                 break;

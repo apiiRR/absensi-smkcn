@@ -323,6 +323,7 @@
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="https://kit.fontawesome.com/0ccb04165b.js" crossorigin="anonymous"></script>
     @stack('javascript')
+    @include('sweetalert::alert')
 </body>
 
 </html>

@@ -54,6 +54,7 @@ class AkunController extends Controller
             'role' => $request['role'],
         ]);
 
+        toast('Data Berhasil Diupdate','success');
         return back();
     }
 

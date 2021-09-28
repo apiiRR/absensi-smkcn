@@ -49,7 +49,8 @@ class JurusanController extends Controller
             'nama' => $request["nama"],
         ]);
 
-        return redirect('/jurusan');
+        toast('Data Berhasil Disimpan','success');
+        return back();
     }
 
     /**

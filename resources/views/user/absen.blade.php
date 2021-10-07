@@ -16,15 +16,22 @@ $month_name = date("F", mktime(0, 0, 0, $month_num, 10));
             <div class="text-center">
                 <h3>21 Sep 2021 - <span id="waktu">00:00:00</span></h3>
             </div>
-            <form action="{{ route('absen.store') }}" method="POST">
+            <form action="{{ route('absen.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="wallet-footer">
-                    <select class="form-control custom-select" name="jurusan" required>
+                    <select name="jurusan" class="form-control custom-select @error('jurusan') is-invalid @enderror"
+                        required>
                         <option value="">-- Pilih Jurusan --</option>
                         @foreach ($jurusans as $jurusan)
                         <option value="{{ $jurusan->id }}">{{ $jurusan->nama }}</option>
                         @endforeach
                     </select>
+                    @error('jurusan')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+
                 </div>
                 <div class="text-center">
                     <div class="webcam-capture-body text-center">
@@ -35,12 +42,14 @@ $month_name = date("F", mktime(0, 0, 0, $month_num, 10));
                             </button>
                         </div>
                         <div class="form-group basic">
-                            <button type="submit" class="btn btn-warning btn-lg btn-block" value="izin" name="simpan">
+                            <button type="button" class="btn btn-warning btn-lg btn-block modal-update"
+                                data-toggle="modal" data-target="#modal-izin">
                                 <ion-icon name="document-outline"></ion-icon>Izin
                             </button>
                         </div>
                         <div class="form-group basic">
-                            <button class="btn btn-danger btn-lg btn-block" value="sakit" name="simpan">
+                            <button type="button" class="btn btn-danger btn-lg btn-block modal-update"
+                                data-toggle="modal" data-target="#modal-sakit">
                                 <ion-icon name="fitness-outline"></ion-icon>Sakit
                             </button>
                         </div>
@@ -68,11 +77,94 @@ $month_name = date("F", mktime(0, 0, 0, $month_num, 10));
 
                         <div class="form-group basic">
                             <label class="label">Aktivitas</label>
-                            <input type="text" class="form-control border-bottom" name="activity">
+                            <input type="text" name="activity"
+                                class="form-control border-bottom @error('activity') is-invalid @enderror">
+                            @error('activity')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+
                         </div>
 
                         <div class="form-group basic">
                             <button type="submit" value="hadir" name="simpan"
+                                class="btn btn-primary btn-block btn-lg">Simpan</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade action-sheet inset" id="modal-izin" tabindex="-1" role="dialog" data-backdrop="static"
+        data-keyboard="false" style="z-index:10000">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Keterangan Izin <span class="status-date badge badge-success"></span>
+                    </h5>
+                    <a href="javascript:void(0);" class="close" style="position: absolute;right:15px;top: 10px;"
+                        data-dismiss="modal" aria-hidden="true">
+                        <ion-icon name="close-outline"></ion-icon>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    <div class="action-sheet-content">
+
+                        <div class="form-group basic">
+                            <label class="label">Surat Keterangan Izin</label>
+                            <input type="file" name="izin"
+                                class="form-control border-bottom @error('izin') is-invalid @enderror">
+                            @error('izin')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+
+                        </div>
+
+                        <div class="form-group basic">
+                            <button type="submit" value="izin" name="simpan"
+                                class="btn btn-primary btn-block btn-lg">Simpan</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade action-sheet inset" id="modal-sakit" tabindex="-1" role="dialog" data-backdrop="static"
+        data-keyboard="false" style="z-index:10000">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Keterangan Sakit <span class="status-date badge badge-success"></span>
+                    </h5>
+                    <a href="javascript:void(0);" class="close" style="position: absolute;right:15px;top: 10px;"
+                        data-dismiss="modal" aria-hidden="true">
+                        <ion-icon name="close-outline"></ion-icon>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    <div class="action-sheet-content">
+
+                        <div class="form-group basic">
+                            <label class="label">Surat Keterangan Sakit</label>
+                            <input type="file" name="sakit"
+                                class="form-control border-bottom @error('sakit') is-invalid @enderror">
+                            @error('sakit')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+
+                        </div>
+
+                        <div class="form-group basic">
+                            <button type="submit" value="sakit" name="simpan"
                                 class="btn btn-primary btn-block btn-lg">Simpan</button>
                         </div>
 

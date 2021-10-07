@@ -72,7 +72,14 @@
                     <tr>
                         <td>{{ $data->date }}</td>
                         <td>{{ $data->time_in }}</td>
-                        <td>{{ $data->activity }}</td>
+                        <td>
+                            @if ($data->attedance == 'hadir')
+                            {{ $data->activity }}
+                            @else
+                            <a class="badge bg-primary" href="{{ asset('uploads/'. $data->activity) }}"
+                                target="_blank" style="text-decoration: none"><i class="fas fa-paper-plane"></i> {{ $data->activity }}</a>
+                            @endif
+                        </td>
                         <td>
                             @switch($data->attedance)
                             @case('hadir')

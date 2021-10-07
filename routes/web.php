@@ -32,6 +32,8 @@ Route::resource('riwayat', 'User\RiwayatController');
 Route::resource('administrator', 'Admin\HomeController');
 Route::resource('jurusan', 'Admin\JurusanController');
 Route::resource('akun', 'Admin\AkunController');
+Route::get('/edit/{id}', 'Admin\AkunController@edit');
+Route::post('/updat', 'Admin\AkunController@updat');
 Route::resource('profile', 'Admin\ProfileController');
 Route::resource('data', 'Admin\DataController');
 

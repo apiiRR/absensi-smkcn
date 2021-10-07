@@ -28,7 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-         if (Auth::user()->role == 'admin') { // Role Admin
+         if ((Auth::user()->role === 'admin') OR (Auth::user()->role === 'guru')) { // Role Admin
             date_default_timezone_set('Asia/Jakarta');
             $bulan = date('n');
             $hari = date('d');
@@ -42,11 +42,11 @@ class HomeController extends Controller
             $totJurusan = Jurus::get()->count();
             $lapBulan = Data::whereMonth('date', $bulan)->get()->count();
             $lapHarian = Data::whereDay('date', $hari)->get()->count();
-            $hadir = Data::where('attedance', 'hadir')->get();
+            $hadir = Data::where('attedance', 'hadir')->whereDay('date', $hari)->get();
             $totHadir = $hadir->count();
-            $sakit = Data::where('attedance', 'sakit')->get();
+            $sakit = Data::where('attedance', 'sakit')->whereDay('date', $hari)->get();
             $totSakit = $sakit->count();
-            $izin = Data::where('attedance', 'izin')->get();
+            $izin = Data::where('attedance', 'izin')->whereDay('date', $hari)->get();
             $totIzin = $izin->count();
             return view('admin.home', [
                 'hadir' => $hadir,

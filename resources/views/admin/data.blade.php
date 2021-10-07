@@ -43,7 +43,14 @@
                                         <td>{{ $value->user->name }}</td>
                                         <td>{{ $value->date }}</td>
                                         <td>{{ $value->day }}</td>
-                                        <td>{{ $value->activity }}</td>
+                                        <td>
+                                            @if ($value->attedance == 'hadir')
+                                            {{ $value->activity }}
+                                            @else
+                                            <a class="badge badge-primary" href="{{ asset('uploads/'. $value->activity) }}"
+                                                target="_blank"><i class="fas fa-paper-plane"></i> {{ $value->activity }}</a>
+                                            @endif
+                                        </td>
                                         <td>
                                             @switch($value->attedance)
                                             @case('hadir')
@@ -76,14 +83,13 @@
         $('.datatab').DataTable();
     });
 
-    function active()
-	{
+    function active() {
         pertama = document.querySelectorAll('.bos');
         pertama[0].classList.add('active');
 
-		first = document.querySelectorAll('.tab-pane');
-		first[0].classList.add('active', 'show');
-	}
+        first = document.querySelectorAll('.tab-pane');
+        first[0].classList.add('active', 'show');
+    }
 
     active()
 </script>

@@ -77,7 +77,8 @@ class AkunController extends Controller
      */
     public function edit($id)
     {
-        //
+        $datas = User::find($id);
+        return response()->json($datas);
     }
 
     /**
@@ -101,5 +102,36 @@ class AkunController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updat(Request $request)
+    {
+        // dd('test');
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'role' => 'required',
+            'userId' => 'required',
+        ]);
+
+        $id = $request->userId;
+
+        if ($request->password) {
+            $data = User::where('id', $id)->update([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+                'role' => $request['role'],
+            ]);
+        } else {
+            $data = User::where('id', $id)->update([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'role' => $request['role'],
+            ]);
+        }
+
+        toast('Data Berhasil Diupdate','success');
+        return back();
     }
 }

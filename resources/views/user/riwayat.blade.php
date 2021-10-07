@@ -68,7 +68,15 @@
                                 <td class="text-center">{{ $value->date }}</td>
                                 <td class="text-center">{{ $value->day }}</td>
                                 <td class="text-center">{{ $value->time_in }}</td>
-                                <td class="text-center">{{ $value->activity }}</td>
+                                <td class="text-center">
+                                    @if ($value->attedance == 'hadir')
+                                    {{ $value->activity }}
+                                    @else
+                                    <a class="badge bg-primary" href="{{ asset('uploads/'. $value->activity) }}"
+                                        target="_blank" style="text-decoration: none"><i class="fas fa-paper-plane"></i>
+                                        {{ $value->activity }}</a>
+                                    @endif
+                                </td>
                                 <td class="text-center">
                                     @switch($value->attedance)
                                     @case('hadir')

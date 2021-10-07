@@ -51,7 +51,10 @@
                                                 @endswitch
                                             </td>
                                             <td>{{ $value->created_at }}</td>
-                                            <td><button class="btn btn-danger">Edit</button></td>
+                                            <td><a class="btn btn-danger" href="javascript:void(0)" id="editUser"
+                                                    data-toggle="modal" data-id="{{ $value->id }}">
+                                                    Edit </a>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -132,21 +135,38 @@
         </div>
     </div>
 
-    <div class="modal fade" id="edit_" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="edit_User" tabindex="-1" aria-labelledby="editUser" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">User Baru</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
+                <form action="/updat" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">Masukkan file excel</label>
-                            <input type="file" class="form-control-file" name="file">
+                            <label>Nama</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <input type="text" id="userId" required hidden>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Role</label>
+                            <select class="form-control" id="role" name="role">
+                                <option value="user">User</option>
+                                <option value="guru">Guru</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -157,11 +177,23 @@
             </div>
         </div>
     </div>
+
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
     $(document).ready(function () {
         $('#example').DataTable();
+    });
+
+    $('body').on('click', '#editUser', function () {
+        var id = $(this).data('id');
+        $.get('/edit/' + id, function (data) {
+            $('#edit_User').modal('show');
+            $('#name').val(data.name);
+            $('#role').val(data.role);
+            $('#email').val(data.email);
+            $('#userId').val(data.id);
+        })
     });
 </script>
 @endsection

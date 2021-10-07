@@ -103,8 +103,8 @@
                                     @foreach ($hadir as $item => $value)
                                     <tr>
                                         <td>{{ $item++ }}</td>
-                                        <td>{{ $value->user_id }}</td>
-                                        <td>{{ $value->jurusan_id }}</td>
+                                        <td>{{ $value->user->name }}</td>
+                                        <td>{{ $value->jurusan->nama }}</td>
                                         <td>{{ $value->activity }}</td>
                                     </tr>
                                     @endforeach
@@ -120,14 +120,18 @@
                                         <th>#</th>
                                         <th>Nama</th>
                                         <th>Jurusan</th>
+                                        <th>Aktivitas</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($sakit as $item => $value)
                                     <tr>
                                         <td>{{ $item++ }}</td>
-                                        <td>{{ $value->user_id }}</td>
-                                        <td>{{ $value->jurusan_id }}</td>
+                                        <td>{{ $value->user->name }}</td>
+                                        <td>{{ $value->jurusan->nama }}</td>
+                                        <td>
+                                            <a class="badge badge-primary" href="{{ asset('uploads/'.$value->activity) }}" target="_blank"><i class="fas fa-paper-plane"></i> {{ $value->activity }}</a>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -142,14 +146,18 @@
                                         <th>#</th>
                                         <th>Nama</th>
                                         <th>Jurusan</th>
+                                        <th>Activity</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($izin as $item => $value)
                                     <tr>
                                         <td>{{ $item++ }}</td>
-                                        <td>{{ $value->user_id }}</td>
-                                        <td>{{ $value->jurusan_id }}</td>
+                                        <td>{{ $value->user->name }}</td>
+                                        <td>{{ $value->jurusan->nama }}</td>
+                                        <td>
+                                            <a class="badge badge-primary" href="{{ asset('uploads/'.$value->activity) }}" target="_blank"><i class="fas fa-paper-plane"></i> {{ $value->activity }}</a>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>

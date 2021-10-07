@@ -46,7 +46,7 @@ class AbsenController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->input());
+        // dd($request->izin);
         date_default_timezone_set('Asia/Jakarta');
         $date = date("Y-m-d");
         $time_in = date("H:i");
@@ -55,6 +55,12 @@ class AbsenController extends Controller
 
         switch ($request->input('simpan')) {
             case 'hadir':
+
+                $request->validate([
+                'activity' => 'required',
+                'jurusan' => 'required',
+                ]);
+
                 $data = Data::create([
                     'date' => $date,
                     'day' => $day,
@@ -70,6 +76,20 @@ class AbsenController extends Controller
 
                 break;
             case 'izin':
+
+                $request->validate([
+                'izin' => 'required|max:2048',
+                'jurusan' => 'required',
+                ]);
+
+                if (!empty($request->izin)) {
+                    // dd($request['izin']);
+                    $SuratIzin = 'Attachment.'.time().'.'.$request['izin']->extension();
+                    $request->izin->move(public_path('uploads'), $SuratIzin);
+                } else {
+                    $SuratIzin = '';
+                }
+
                 $data = Data::create([
                     'date' => $date,
                     'day' => $day,
@@ -77,6 +97,7 @@ class AbsenController extends Controller
                     'user_id' => $user,
                     'jurusan_id' => $request['jurusan'],
                     'attedance' => 'izin',
+                    'activity' => $SuratIzin,
                 ]);
 
                 toast('Data Berhasil Disimpan','success');
@@ -84,6 +105,20 @@ class AbsenController extends Controller
 
                 break;
             default:
+
+                $request->validate([
+                'sakit' => 'required|max:2048',
+                'jurusan' => 'required',
+                ]);
+
+                if (!empty($request->sakit)) {
+                    $fileAttachment = 'Attachment.'.time().'.'.$request->sakit->extension();
+                    $request->sakit->move(public_path('uploads'), $fileAttachment);
+                } else {
+                    $fileAttachment = '';
+                }
+
+
                 $data = Data::create([
                     'date' => $date,
                     'day' => $day,
@@ -91,6 +126,7 @@ class AbsenController extends Controller
                     'user_id' => $user,
                     'jurusan_id' => $request['jurusan'],
                     'attedance' => 'sakit',
+                    'activity' => $fileAttachment,
                 ]);
 
                 toast('Data Berhasil Disimpan','success');

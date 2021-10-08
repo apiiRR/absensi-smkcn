@@ -27,6 +27,7 @@
                             </div>
                         </div>
                     </div>
+                    @if ($user_jurus)
                     <input type="text" value="{{ $user_jurus->jurusan_id }}" id="project" hidden>
                     <div class="col-sm-4 col-md-4">
                         <a class="col-md-12 btn btn-warning mt-1"
@@ -34,11 +35,14 @@
                             target="_blank">
                             <ion-icon name="print-outline"></ion-icon> Cetak
                         </a>
-                        {{-- <a class="btn btn-success text-center mt-2"
-                            onclick="this.href='/cpdf/'+ document.getElementById('from').value + '/' + document.getElementById('to').value + '/' + document.getElementById('project').value"
-                            target="_blank"><i class="fas fa-print text-white"></i> Cetak</a> --}}
                     </div>
-
+                    @else
+                    <div class="col-sm-4 col-md-4">
+                        <a class="col-md-12 btn btn-secondary mt-1">
+                            <ion-icon name="print-outline"></ion-icon> Data Kosong
+                        </a>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

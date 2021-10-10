@@ -51,10 +51,19 @@
                                                 @endswitch
                                             </td>
                                             <td>{{ $value->created_at }}</td>
-                                            <td><a class="btn btn-danger" href="javascript:void(0)" id="editUser"
+                                            <td>
+                                                <a class="btn btn-info" href="javascript:void(0)" id="editUser"
                                                     data-toggle="modal" data-id="{{ $value->id }}">
                                                     Edit </a>
+                                                <button class="btn btn-danger"
+                                                    onclick="event.preventDefault(); document.getElementById('hapus_{{ $value->id }}').submit();">Hapus</button>
                                             </td>
+                                            <form id="hapus_{{ $value->id }}"
+                                                action="{{ route('akun.destroy', ['akun' => $value->id]) }}"
+                                                method="POST" class="d-none">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -151,7 +160,7 @@
                             <label>Nama</label>
                             <input type="text" class="form-control" id="name" name="name" required>
                         </div>
-                        <input type="text" id="userId" required hidden>
+                        <input type="text" id="userId" name="userId" required hidden>
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Role</label>
                             <select class="form-control" id="role" name="role">
@@ -193,6 +202,7 @@
             $('#role').val(data.role);
             $('#email').val(data.email);
             $('#userId').val(data.id);
+            console.log(data.id);
         })
     });
 </script>

@@ -101,12 +101,15 @@ class AkunController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+
+        toast('User Berhasil Dihapus','success');
+        return back();
     }
 
     public function updat(Request $request)
     {
-        // dd('test');
+        // dd($request);
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',

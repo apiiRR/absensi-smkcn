@@ -33,6 +33,7 @@ $month_name = date("F", mktime(0, 0, 0, $month_num, 10));
                     @enderror
 
                 </div>
+                @if ($data === null)
                 <div class="text-center">
                     <div class="webcam-capture-body text-center">
                         <div class="form-group basic">
@@ -55,6 +56,7 @@ $month_name = date("F", mktime(0, 0, 0, $month_num, 10));
                         </div>
                     </div>
                 </div>
+                @endif
 
         </div>
     </div>

@@ -14,7 +14,7 @@ $month_name = date("F", mktime(0, 0, 0, $month_num, 10));
     <div class="section wallet-card-section pt-1">
         <div class="wallet-card">
             <div class="text-center">
-                <h3>21 Sep 2021 - <span id="waktu">00:00:00</span></h3>
+                <h3><span id="tanggal_sekarang"></span> || <span id="waktu">00:00:00</span></h3>
             </div>
             <form action="{{ route('absen.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -250,6 +250,7 @@ $month_name = date("F", mktime(0, 0, 0, $month_num, 10));
             date.slice(5, 7) + '-' +
             date.slice(8, 10);
         console.log(nDate);
+        document.querySelector('#tanggal_sekarang').innerHTML = nDate;
         document.getElementById('tanggal_hadir').value = nDate;
         document.getElementById('tanggal_sakit').value = nDate;
         document.getElementById('tanggal_izin').value = nDate;

@@ -24,7 +24,7 @@ class AbsenController extends Controller
     {
         date_default_timezone_set('Asia/Jakarta');
         $tanggal = date("Y-m-d");
-        $data = Data::where('date', $tanggal)->first();
+        $data = Data::where('user_id', Auth::user()->id)->where('date', $tanggal)->first();
         $jurusans = Jurus::get();
         // dd($data);
         return view('user.absen', [

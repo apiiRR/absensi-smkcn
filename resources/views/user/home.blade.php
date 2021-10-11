@@ -13,9 +13,18 @@
 
         <div class="wallet-footer">
             <div class="item">
+                <a href="/">
+                    <div class="icon-wrapper bg-info">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </div>
+                    <strong>Home</strong>
+                </a>
+            </div>
+
+            <div class="item">
                 <a href="/absen">
                     <div class="icon-wrapper bg-danger">
-                        <ion-icon name="camera-outline"></ion-icon>
+                        <ion-icon name="add-circle-outline"></ion-icon>
                     </div>
                     <strong>Absen</strong>
                 </a>
@@ -27,15 +36,6 @@
                         <ion-icon name="document-text-outline"></ion-icon>
                     </div>
                     <strong>History</strong>
-                </a>
-            </div>
-
-            <div class="item">
-                <a href="">
-                    <div class="icon-wrapper bg-primary">
-                        <ion-icon name="id-card-outline"></ion-icon>
-                    </div>
-                    <strong>ID Card</strong>
                 </a>
             </div>
 

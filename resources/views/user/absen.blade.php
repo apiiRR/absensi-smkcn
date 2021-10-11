@@ -37,9 +37,8 @@ $month_name = date("F", mktime(0, 0, 0, $month_num, 10));
                 <div class="text-center">
                     <div class="webcam-capture-body text-center">
                         <div class="form-group basic">
-                            <button type="button" class="btn btn-success btn-lg btn-block modal-update"
-                                data-toggle="modal" data-target="#modal-show">
-                                <ion-icon name="checkmark-circle-outline"></ion-icon>Hadir
+                            <button type="submit" class="btn btn-success btn-lg btn-block" value="masuk" name="simpan">
+                                <ion-icon name="checkmark-circle-outline"></ion-icon>Masuk
                             </button>
                         </div>
                         <div class="form-group basic">
@@ -56,47 +55,15 @@ $month_name = date("F", mktime(0, 0, 0, $month_num, 10));
                         </div>
                     </div>
                 </div>
+                @elseif($data['activity'] == null)
+                <div class="form-group basic">
+                    <button type="button" class="btn btn-success btn-lg btn-block modal-update" data-toggle="modal"
+                        data-target="#modal-show">
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>Keluar
+                    </button>
+                </div>
                 @endif
 
-        </div>
-    </div>
-
-
-    <div class="modal fade action-sheet inset" id="modal-show" tabindex="-1" role="dialog" data-backdrop="static"
-        data-keyboard="false" style="z-index:10000">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Keterangan Kehadiran <span class="status-date badge badge-success"></span>
-                    </h5>
-                    <a href="javascript:void(0);" class="close" style="position: absolute;right:15px;top: 10px;"
-                        data-dismiss="modal" aria-hidden="true">
-                        <ion-icon name="close-outline"></ion-icon>
-                    </a>
-                </div>
-                <div class="modal-body">
-                    <div class="action-sheet-content">
-
-                        <div class="form-group basic">
-                            <label class="label">Aktivitas</label>
-                            <input type="text" name="activity"
-                                class="form-control border-bottom @error('activity') is-invalid @enderror">
-                            @error('activity')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-
-                        </div>
-
-                        <div class="form-group basic">
-                            <button type="submit" value="hadir" name="simpan"
-                                class="btn btn-primary btn-block btn-lg">Simpan</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -177,6 +144,51 @@ $month_name = date("F", mktime(0, 0, 0, $month_num, 10));
     </div>
 
     </form>
+
+    @if ($data)
+    <form action="{{ route('absen.update', ['absen' => $data->id ]) }}" method="post">
+        @csrf
+        @method('PUT')
+        <div class="modal fade action-sheet inset" id="modal-show" tabindex="-1" role="dialog" data-backdrop="static"
+            data-keyboard="false" style="z-index:10000">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Keterangan Kehadiran <span
+                                class="status-date badge badge-success"></span>
+                        </h5>
+                        <a href="javascript:void(0);" class="close" style="position: absolute;right:15px;top: 10px;"
+                            data-dismiss="modal" aria-hidden="true">
+                            <ion-icon name="close-outline"></ion-icon>
+                        </a>
+                    </div>
+                    <div class="modal-body">
+                        <div class="action-sheet-content">
+
+                            <div class="form-group basic">
+                                <label class="label">Aktivitas</label>
+                                <input type="text" name="activity"
+                                    class="form-control border-bottom @error('activity') is-invalid @enderror">
+                                @error('activity')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+
+                            </div>
+
+                            <div class="form-group basic">
+                                <button type="submit" value="keluar" name="simpan"
+                                    class="btn btn-primary btn-block btn-lg">Simpan</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    @endif
 
 </div>
 

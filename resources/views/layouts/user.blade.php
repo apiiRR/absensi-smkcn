@@ -229,14 +229,6 @@
                                 History
                             </a>
                         </li>
-                        <li>
-                            <a href="./id-card" class="item">
-                                <div class="icon-box bg-primary">
-                                    <ion-icon name="id-card-outline"></ion-icon>
-                                </div>
-                                ID Card
-                            </a>
-                        </li>
 
                         <li>
                             <a href="{{ route('profil.index') }}" class="item">

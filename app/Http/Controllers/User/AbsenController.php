@@ -59,10 +59,9 @@ class AbsenController extends Controller
         $user = Auth::user()->id;
 
         switch ($request->input('simpan')) {
-            case 'hadir':
+            case 'masuk':
 
                 $request->validate([
-                'activity' => 'required',
                 'jurusan' => 'required',
                 ]);
 
@@ -70,7 +69,6 @@ class AbsenController extends Controller
                     'date' => $date,
                     'day' => $day,
                     'time_in' => $time_in,
-                    'activity' => $request['activity'],
                     'user_id' => $user,
                     'jurusan_id' => $request['jurusan'],
                     'attedance' => 'hadir',
@@ -172,7 +170,25 @@ class AbsenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'activity' => 'required',
+        ]);
+
+        switch ($request->input('simpan')) {
+            case 'keluar':
+                $data = Data::where('id', $id)->update([
+                    'activity' => $request['activity'],
+                ]);
+
+                toast('Absen Keluar Berhasil Disimpan','success');
+                return back();
+                
+                break;
+            
+            default:
+                # code...
+                break;
+        }
     }
 
     /**

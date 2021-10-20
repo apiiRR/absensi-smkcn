@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Data;
+use App\Models\Kelas;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,11 +16,19 @@ class AkunController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
-        $datas = User::get();
+        // $datas = User::get();
+        $datas = User::leftJoin('kelas', 'kelas.id', '=', 'users.kelas_id')->select('users.*', 'kelas.nama')->get();
+        $kelas = Kelas::get();
         return view('admin.akun', [
             'datas' => $datas,
+            'kelas' => $kelas,
         ]);
     }
 
@@ -125,16 +135,34 @@ class AkunController extends Controller
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
                 'role' => $request['role'],
+                'kelas' => $request['kelas'],
             ]);
         } else {
             $data = User::where('id', $id)->update([
                 'name' => $request['name'],
                 'email' => $request['email'],
                 'role' => $request['role'],
+                'kelas' => $request['kelas'],
             ]);
         }
 
         toast('Data Berhasil Diupdate','success');
+        return back();
+    }
+
+    public function default()
+    {
+        $datas = User::where('role', 'user')->get();
+        // dd($datas);
+        for ($i=0; $i < count($datas); $i++) {
+            $password = "Merdeka@1945";
+            // dd($datas[$i]['id']);
+            $data = User::where('id', $datas[$i]['id'])->update([
+                'password' => Hash::make($password),
+            ]);
+        }
+
+        toast('Kata Sandi Diupdate','success');
         return back();
     }
 }

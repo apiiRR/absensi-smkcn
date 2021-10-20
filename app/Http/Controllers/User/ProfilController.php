@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Data;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +23,9 @@ class ProfilController extends Controller
     
     public function index()
     {
-        $user  = User::where('id', Auth::user()->id)->first();
+        $user  = User::leftJoin('kelas', 'kelas.id', '=', 'users.kelas_id')->select('users.*', 'kelas.nama')->where('users.id', Auth::user()->id)->first();
+        /* $datas = Data::join('users', 'users.id', '=', 'data.user_id')->where('users.kelas', '11 TKJ-1')->get(['data.*']); */
+        // dd($datas);
         return view('user.profil', [
             'user' => $user,
         ]);

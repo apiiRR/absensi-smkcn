@@ -7,7 +7,8 @@
             <h1>Pengelolaan Akun</h1>
             <div class="section-header-breadcrumb">
                 <button class="btn btn-primary mr-2" data-toggle="modal" data-target="#tambahUser">Tambah User</button>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#importUser">Import User</button>
+                <button class="btn btn-primary mr-2" data-toggle="modal" data-target="#importUser">Import User</button>
+                <a href="/default" class="btn btn-primary text-white" style="cursor: pointer">Password User Default</a>
             </div>
         </div>
 
@@ -27,6 +28,7 @@
                                             <th>#</th>
                                             <th>Name</th>
                                             <th>Email</th>
+                                            <th>Kelas</th>
                                             <th>Role</th>
                                             <th>Created_at</th>
                                             <th>Aksi</th>
@@ -38,6 +40,7 @@
                                             <td>{{ $item+1 }}</td>
                                             <td>{{ $value->name }}</td>
                                             <td>{{ $value->email }}</td>
+                                            <td>{{ $value->nama }}</td>
                                             <td>
                                                 @switch($value->role)
                                                 @case('admin')
@@ -93,8 +96,17 @@
                             <input type="text" class="form-control" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlSelect1">Role</label>
-                            <select class="form-control" id="exampleFormControlSelect1" name="role">
+                            <label>Kelas</label>
+                            <select class="form-control" name="kelas">
+                                <option>-- Pilih Kelas --</option>
+                                @foreach ($kelas as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Role</label>
+                            <select class="form-control" name="role">
                                 <option value="user">User</option>
                                 <option value="guru">Guru</option>
                                 <option value="admin">Admin</option>
@@ -162,7 +174,16 @@
                         </div>
                         <input type="text" id="userId" name="userId" required hidden>
                         <div class="form-group">
-                            <label for="exampleFormControlSelect1">Role</label>
+                            <label for="kelas">Kelas</label>
+                            <select class="form-control" id="kelas" name="kelas">
+                                <option value="">-- Pilih Jurusan --</option>
+                                @foreach ($kelas as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="role">Role</label>
                             <select class="form-control" id="role" name="role">
                                 <option value="user">User</option>
                                 <option value="guru">Guru</option>
@@ -199,10 +220,11 @@
         $.get('/edit/' + id, function (data) {
             $('#edit_User').modal('show');
             $('#name').val(data.name);
+            $('#kelas').val(data.kelas_id);
             $('#role').val(data.role);
             $('#email').val(data.email);
             $('#userId').val(data.id);
-            console.log(data.id);
+            console.log(data);
         })
     });
 </script>

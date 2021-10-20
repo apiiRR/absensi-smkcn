@@ -31,15 +31,21 @@ Route::resource('riwayat', 'User\RiwayatController');
 
 Route::resource('administrator', 'Admin\HomeController');
 Route::resource('jurusan', 'Admin\JurusanController');
+Route::resource('kelas', 'Admin\KelasController');
+Route::resource('data_kelas', 'Admin\DataKelasController');
 Route::resource('akun', 'Admin\AkunController');
 Route::get('/edit/{id}', 'Admin\AkunController@edit');
 Route::post('/updat', 'Admin\AkunController@updat');
+Route::get('/default', 'Admin\AkunController@default');
+Route::get('/filter/{from}/{end}/{id}', 'Admin\DataKelasController@filter');
 Route::resource('profile', 'Admin\ProfileController');
 Route::resource('data', 'Admin\DataController');
 
 Route::resource('/wali-siswa', 'OrtuController');
 
 Route::get('/pdf/{from}/{to}/{project}', 'PDFController@cetak');
+
+Route::get('/cetak/{from}/{to}/{kelas}', 'PDFController@admin');
 
 Route::get('file-import-export', [UserController::class, 'fileImportExport']);
 Route::post('file-import', [App\Http\Controllers\UserController::class, 'fileImport'])->name('file-import');

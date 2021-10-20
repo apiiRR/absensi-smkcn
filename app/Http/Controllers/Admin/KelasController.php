@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kelas;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class KelasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +20,11 @@ class HomeController extends Controller
     
     public function index()
     {
-        //
+        $kelas = Kelas::get();
+        // dd($data[0]->jurusan_id == $jurus[0]->id);
+        return view('admin.kelas', [
+            'kelas' => $kelas,
+        ]);
     }
 
     /**
@@ -40,7 +45,16 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "nama" => 'required',
+        ]);
+
+        $data = Kelas::create([
+            'nama' => $request["nama"],
+        ]);
+
+        toast('Data Berhasil Disimpan','success');
+        return back();
     }
 
     /**

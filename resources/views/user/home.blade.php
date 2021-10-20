@@ -40,7 +40,7 @@
             </div>
 
             <div class="item">
-                <a href="/profile">
+                <a href="{{ route('profil.index') }}">
                     <div class="icon-wrapper bg-warning">
                         <ion-icon name="person-outline"></ion-icon>
                     </div>

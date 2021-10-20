@@ -61,6 +61,7 @@
                                 <th scope="col" class="align-middle sorting text-center">Hari</th>
                                 <th scope="col" class="align-middle sorting text-center">Waktu</th>
                                 <th scope="col" class="align-middle sorting text-center">Activity</th>
+                                <th scope="col" class="align-middle sorting text-center">Jurusan</th>
                                 <th scope="col" class="align-middle sorting text-center">Status</th>
                                 <th scope="col" class="align-middle sorting text-center">Aksi</th>
                             </tr>
@@ -81,6 +82,7 @@
                                         {{ $value->activity }}</a>
                                     @endif
                                 </td>
+                                <td class="text-center">{{ $value->jurusan->nama }}</td>
                                 <td class="text-center">
                                     @switch($value->attedance)
                                     @case('hadir')

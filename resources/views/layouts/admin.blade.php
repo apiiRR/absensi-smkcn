@@ -78,14 +78,19 @@
                         </li>
                         <li class="menu-header">Umum</li>
                         <li><a class="nav-link" href="{{ route('data.index') }}"><i class="fas fa-database"></i>
-                                <span>Data Absen Siswa</span></a></li>
-                                
+                                <span>Absen Siswa per Jurusan</span></a></li>
+                        <li><a class="nav-link" href="{{ route('data_kelas.index') }}"><i class="fas fa-server"></i>
+                                <span>Absen Siswa per Kelas</span></a></li>
+
                         @if (Auth::user()->role == 'admin')
                         <li class="menu-header">Administrator</li>
                         <li class="{{ Request::routeIs('/jurusan') ? 'active' : '' }}"><a class="nav-link"
                                 href="{{ route('jurusan.index') }}"><i
                                     class="fas fa-network-wired"></i><span>Pengelolaan
                                     Jurusan</span></a></li>
+                        <li class="{{ Request::routeIs('/kelas') ? 'active' : '' }}"><a class="nav-link"
+                                href="{{ route('kelas.index') }}"><i class="fab fa-odnoklassniki"></i><span>Pengelolaan
+                                    Kelas</span></a></li>
                         <li class="{{ Request::routeIs('akun') ? 'active' : '' }}"><a class="nav-link"
                                 href="{{ route('akun.index') }}"><i class="fas fa-users"></i> <span>Pengelolaan
                                     Akun</span></a></li>

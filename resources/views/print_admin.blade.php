@@ -19,7 +19,8 @@
         @if ($datas[0])
             <div class="col-xs text-left">
                 <small>Jurusan : {{$datas[0][0]->jurusan->nama}}</small><br />
-                <small>Siswa : {{$datas[0][0]->user->name}}</small><br />
+                <small>Kelas : {{$datas[2]->nama}}</small><br />
+                <small>Periode : {{$datas[3]}} - {{ $datas[4] }}</small><br />
             </div>
         @else
             <div class="col-xs text-left">
@@ -44,6 +45,7 @@
                 <table class="table table-striped table-sm table-bordered border border-dark text-center">
                     <thead>
                         <tr class="bg-danger text-white">
+                            <th scope="col">Nama</th>
                             <th scope="col">Tanggal</th>
                             <th scope="col">Waktu</th>
                             <th scope="col">Hari</th>
@@ -54,6 +56,7 @@
                     <tbody>
                         @foreach ($datas[0] as $item)
                             <tr>
+                                <td>{{ $item->name }}</td>
                                 <td>{{ $item->date }}</td>
                                 <td>{{ $item->time_in }}</td>
                                 <td>{{ $item->day }}</td>
@@ -65,29 +68,6 @@
                 </table>
             </div>
         </div>
-        {{-- <div class="row">
-            <div class="col-xs text-left">
-                <small>Employee</small>
-                <br>
-                <br>
-                <br>
-                <h6>{{$datas[0][0]->user->name}}</h6>
-            </div>
-            <div class="col-xs text-center">
-                <small>Manager</small>
-                <br>
-                <br>
-                <br>
-                <h6>Bayu Hastomo</h6>
-            </div>
-            <div class="col-xs text-right">
-                <small>Director</small>
-                <br>
-                <br>
-                <br>
-                <h6>Tedhi Achdiana</h6>
-            </div>
-        </div> --}}
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

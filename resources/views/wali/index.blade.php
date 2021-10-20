@@ -22,6 +22,7 @@
                     <thead>
                         <tr>
                             <th>Nama</th>
+                            <th>Kelas</th>
                             <th>Tanggal</th>
                             <th>Hari</th>
                             <th>Aktivitas</th>
@@ -33,6 +34,7 @@
                         @if ($jurus->id == $value->jurusan_id)
                         <tr>
                             <td>{{ $value->user->name }}</td>
+                            <td>{{ $value->nama }}</td>
                             <td>{{ $value->date }}</td>
                             <td>{{ $value->day }}</td>
                             <td>

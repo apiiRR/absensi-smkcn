@@ -16,7 +16,8 @@ class OrtuController extends Controller
     public function index()
     {
         $jurusan = Jurus::get();
-        $datas = Data::get();
+        $datas = Data::leftJoin('users', 'users.id', '=', 'data.user_id')->leftjoin('kelas', 'kelas.id', '=', 'users.kelas_id')->select('data.*', 'kelas.nama')->get();
+        // dd($datas);
         return view('wali.index', [
             'jurusan' => $jurusan,
             'datas' => $datas,

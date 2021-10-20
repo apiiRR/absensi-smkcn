@@ -135,14 +135,14 @@ class AkunController extends Controller
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
                 'role' => $request['role'],
-                'kelas' => $request['kelas'],
+                'kelas_id' => $request['kelas'],
             ]);
         } else {
             $data = User::where('id', $id)->update([
                 'name' => $request['name'],
                 'email' => $request['email'],
                 'role' => $request['role'],
-                'kelas' => $request['kelas'],
+                'kelas_id' => $request['kelas'],
             ]);
         }
 

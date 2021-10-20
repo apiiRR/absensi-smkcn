@@ -150,15 +150,16 @@ class AkunController extends Controller
         return back();
     }
 
-    public function default()
+    public function default($role, $pass)
     {
-        $datas = User::where('role', 'user')->get();
-        // dd($datas);
+        $datas = User::where('role', $role)->get();
+        $total = count($datas) + 50;
+        set_time_limit($total);
         for ($i=0; $i < count($datas); $i++) {
-            $password = "Merdeka@1945";
+            // $password = "Merdeka@1945";
             // dd($datas[$i]['id']);
             $data = User::where('id', $datas[$i]['id'])->update([
-                'password' => Hash::make($password),
+                'password' => Hash::make($pass),
             ]);
         }
 

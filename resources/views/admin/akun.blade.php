@@ -8,7 +8,7 @@
             <div class="section-header-breadcrumb">
                 <button class="btn btn-primary mr-2" data-toggle="modal" data-target="#tambahUser">Tambah User</button>
                 <button class="btn btn-primary mr-2" data-toggle="modal" data-target="#importUser">Import User</button>
-                <a href="/default" class="btn btn-primary text-white" style="cursor: pointer">Password User Default</a>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#pass">Password User Default</button>
             </div>
         </div>
 
@@ -100,7 +100,7 @@
                             <select class="form-control" name="kelas">
                                 <option>-- Pilih Kelas --</option>
                                 @foreach ($kelas as $item)
-                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                <option value="{{ $item->id }}">{{ $item->nama }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -178,7 +178,7 @@
                             <select class="form-control" id="kelas" name="kelas">
                                 <option value="">-- Pilih Jurusan --</option>
                                 @foreach ($kelas as $item)
-                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                <option value="{{ $item->id }}">{{ $item->nama }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -202,6 +202,39 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
                         <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="pass" tabindex="-1" aria-labelledby="editUser" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Password User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="role">Role</label>
+                            <select class="form-control" id="role_pass">
+                                <option value="user">User</option>
+                                <option value="guru">Guru</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="text" class="form-control" id="password_pass">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                        <a class="btn btn-primary text-white" onclick="this.href='/default/'+ document.getElementById('role_pass').value + '/' + document.getElementById('password_pass').value" style="cursor: pointer">Ubah</a>
                     </div>
                 </form>
             </div>

@@ -36,7 +36,7 @@ Route::resource('data_kelas', 'Admin\DataKelasController');
 Route::resource('akun', 'Admin\AkunController');
 Route::get('/edit/{id}', 'Admin\AkunController@edit');
 Route::post('/updat', 'Admin\AkunController@updat');
-Route::get('/default', 'Admin\AkunController@default');
+Route::get('/default/{role}/{pass}', 'Admin\AkunController@default');
 Route::get('/filter/{from}/{end}/{id}', 'Admin\DataKelasController@filter');
 Route::resource('profile', 'Admin\ProfileController');
 Route::resource('data', 'Admin\DataController');

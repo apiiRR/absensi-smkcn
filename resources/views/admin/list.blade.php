@@ -76,7 +76,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a class="btn btn-primary text-white" onclick="this.href='/cetak/'+ document.getElementById('awal').value + '/' + document.getElementById('akhir').value + '/{{ $nama->id }}' " target="_blank">Cetak</a>
+                    <a class="btn btn-primary text-white" onclick="this.href='/cetak/'+ document.getElementById('awal').value + '/' + document.getElementById('akhir').value + '/{{ $nama->id }}' " target="_blank" style="cursor: pointer">Cetak</a>
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a class="btn btn-primary text-white" onclick="this.href='/filter/'+ document.getElementById('from').value + '/' + document.getElementById('end').value + '/{{ $nama->id }}' ">Tampil</a>
+                    <a class="btn btn-primary text-white" onclick="this.href='/filter/'+ document.getElementById('from').value + '/' + document.getElementById('end').value + '/{{ $nama->id }}' " style="cursor: pointer">Tampil</a>
                 </div>
             </div>
         </div>
